@@ -11,9 +11,6 @@ export default class Enemy extends Character {
       knockbackResistance: 0.05,
     });
 
-    this.setStrokeStyle(2, 0xffc7c7, 0.8);
-    this.setDepth(12);
-
     this.body.setSize(38, 62);
     this.body.setOffset(-19, -31);
     this.body.setBounce(0.05);
@@ -27,19 +24,6 @@ export default class Enemy extends Character {
 
     this.target = null;
     this.attackManager = new AttackManager(scene, this, scene.enemyAttacks, ['enemySwipe']);
-
-    this.glowParticles = scene.add.particles('enemy-glow');
-    this.glowParticles.setDepth(11);
-    this.glowEmitter = this.glowParticles.createEmitter({
-      speedX: { min: -25, max: 25 },
-      speedY: { min: -25, max: 25 },
-      scale: { start: 0.55, end: 0 },
-      alpha: { start: 0.6, end: 0 },
-      lifespan: 360,
-      frequency: 60,
-      blendMode: 'ADD',
-    });
-    this.glowEmitter.startFollow(this, 0, 22);
   }
 
   setTarget(target) {
@@ -80,14 +64,5 @@ export default class Enemy extends Character {
         this.attackTimer = this.attackCooldown;
       }
     }
-  }
-
-  die() {
-    if (this.glowParticles) {
-      this.glowParticles.destroy();
-      this.glowParticles = null;
-      this.glowEmitter = null;
-    }
-    super.die();
   }
 }

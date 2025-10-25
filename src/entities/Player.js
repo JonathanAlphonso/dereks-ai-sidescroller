@@ -11,9 +11,6 @@ export default class Player extends Character {
       knockbackResistance: 0.2,
     });
 
-    this.setStrokeStyle(3, 0x9deaff, 0.9);
-    this.setDepth(15);
-
     this.body.setSize(40, 70);
     this.body.setOffset(-20, -35);
     this.body.setBounce(0.05);
@@ -23,19 +20,6 @@ export default class Player extends Character {
     this.airControl = 200;
     this.groundPounding = false;
     this.attackManager = new AttackManager(scene, this, scene.playerAttacks, ['jab', 'uppercut', 'spike', 'launcher', 'shockwave']);
-
-    this.trailParticles = scene.add.particles('player-glow');
-    this.trailParticles.setDepth(14);
-    this.trailEmitter = this.trailParticles.createEmitter({
-      speedX: { min: -40, max: 40 },
-      speedY: { min: -40, max: 40 },
-      scale: { start: 0.7, end: 0 },
-      alpha: { start: 0.9, end: 0 },
-      lifespan: 420,
-      frequency: 28,
-      blendMode: 'ADD',
-    });
-    this.trailEmitter.startFollow(this, 0, 24);
 
     this.cursors = scene.input.keyboard.createCursorKeys();
     this.keys = scene.input.keyboard.addKeys({
@@ -135,14 +119,5 @@ export default class Player extends Character {
     if (PhaserRef.Input.Keyboard.JustDown(keys.launcher)) {
       this.attackManager.perform('launcher');
     }
-  }
-
-  die() {
-    if (this.trailParticles) {
-      this.trailParticles.destroy();
-      this.trailParticles = null;
-      this.trailEmitter = null;
-    }
-    super.die();
   }
 }

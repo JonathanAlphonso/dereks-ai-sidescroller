@@ -15,10 +15,7 @@ export default class AttackHitbox extends PhaserRef.GameObjects.Rectangle {
     this.body.allowGravity = false;
     this.body.setImmovable(true);
     this.body.setSize(width, height);
-    this.setDepth(16);
-    this.setBlendMode(PhaserRef.BlendModes.ADD);
-    this.setStrokeStyle(2, 0xfff7d1, 0.8);
-    this.setAlpha(0.45);
+    this.setDepth(5);
 
     if (definition.radius) {
       this.setDisplaySize(definition.radius * 2, definition.radius * 2);

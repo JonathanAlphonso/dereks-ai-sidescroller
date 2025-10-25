@@ -21,7 +21,6 @@ Then visit the URL printed in the terminal (typically http://localhost:3000).
 - **K** – Uppercut (strong vertical launcher)
 - **L** – Spike (downward slam)
 - **U** – Diagonal launcher (45° strike)
-- **Enter / Space / R** (on Game Over) – Retry the run immediately
 
 ## Gameplay details
 
@@ -31,7 +30,5 @@ Then visit the URL printed in the terminal (typically http://localhost:3000).
 - The ground pound cancels horizontal momentum, accelerates the player downward, and releases a radial shockwave upon landing.
 - Taking rapid deceleration damage: both the player and enemies receive impact damage proportional to the velocity they lose when colliding with the ground or walls.
 - Enemy behavior is simple but relentless: they sprint toward the player, jump to close vertical gaps, and swipe when in range.
-- A neon-drenched backdrop, aurora sky, and reactive particles keep the arena visually alive between waves.
-- A dedicated game-over panel with a Retry button (and Enter/Space/R shortcuts) lets you jump straight back into the action.
 
 Survive as many waves as possible!

@@ -1,15 +1,9 @@
-import { calculateImpactDamage } from '../util/ImpactMath.js';
-
 const PhaserRef = window.Phaser;
 
 export default class Character extends PhaserRef.GameObjects.Rectangle {
   constructor(scene, x, y, width, height, color, config = {}) {
     super(scene, x, y, width, height, color);
     this.scene = scene;
-    this.setOrigin(0.5, 0.5);
-    this.setDepth(10);
-    this.setAlpha(0.95);
-    this.setStrokeStyle(2, 0xffffff, 0.2);
     this.maxHealth = config.maxHealth ?? 100;
     this.health = this.maxHealth;
     this.stunTimer = 0;
@@ -69,12 +63,8 @@ export default class Character extends PhaserRef.GameObjects.Rectangle {
   }
 
   die() {
-    if (this.isDead) {
-      return;
-    }
     this.isDead = true;
     this.body.enable = false;
-    this.scene.events.emit('character-died', this);
     this.scene.time.addEvent({
       delay: 250,
       callback: () => this.destroy(),
@@ -97,28 +87,12 @@ export default class Character extends PhaserRef.GameObjects.Rectangle {
     const body = this.body;
     const prevVel = this.lastVelocity;
 
-    const collisions = {
-      down: body.blocked.down || body.touching.down,
-      side:
-        body.blocked.left ||
-        body.blocked.right ||
-        body.touching.left ||
-        body.touching.right,
-    };
-
-    const { verticalDamage, horizontalDamage } = calculateImpactDamage({
-      prevVelocity: prevVel,
-      currentVelocity: body.velocity,
-      collisions,
-      impactScale: this.impactScale,
-    });
-
-    if (verticalDamage > 0) {
-      this.takeDamage(verticalDamage);
+    if ((body.blocked.down || body.touching.down) && Math.abs(prevVel.y) > 250 && Math.abs(body.velocity.y) < 40) {
+      this.takeDamage(Math.abs(prevVel.y) * this.impactScale);
     }
 
-    if (horizontalDamage > 0) {
-      this.takeDamage(horizontalDamage);
+    if ((body.blocked.left || body.blocked.right || body.touching.left || body.touching.right) && Math.abs(prevVel.x) > 250 && Math.abs(body.velocity.x) < 40) {
+      this.takeDamage(Math.abs(prevVel.x) * this.impactScale);
     }
   }
 
