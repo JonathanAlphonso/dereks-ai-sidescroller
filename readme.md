@@ -1,1 +1,37 @@
-Sidescroller where the player character starts in the center of a procedurally generated area of platforms where waves of enemies spawn from the far left and right of the area and are drawn towards the player character and will attack and damage the player character if within a close enough range. Player character has a move set including a jump, a ground pound that removes horizontal momentum when in air, and immediately sets vertical momentum to be negative, plummeting to the ground to create a Shockwave, knocking enemies back. All attacks have physics associated and impact their target(s) with knockback, with direction being dependent on the move used: uppercut knocks enemies upwards, spike knocks them downwards, horizontal attacks knock them back horizontally, and some attacks have effects knocking enemies in angles between at 45°, or are meant as "jabs" that briefly stun, rather than knocking back, but don't cause as much damage. When an enemy, or even the player character contact a surface that suddenly stops their momentum (hitting the ground after a long fall or a wall after being blasted horizontally) they take damage relative to the velocity lost upon impact.
+# Procedural Sidescroller Arena
+
+A Phaser 3 prototype featuring a procedural arena filled with platforms. Defend yourself from waves of enemies that spill in from the left and right edges while chaining physics-based attacks and landing shockwave-inducing ground pounds.
+
+## Getting started
+
+This project does not require a build step. Launch a static file server from the repository root and open `index.html` in a browser that supports ES modules.
+
+```bash
+npx serve .
+```
+
+Then visit the URL printed in the terminal (typically http://localhost:3000).
+
+## Controls
+
+- **A / D** – Move left and right
+- **W** or **Space** – Jump
+- **S** (while airborne) – Ground pound to trigger a landing shockwave
+- **J** – Jab (quick horizontal strike)
+- **K** – Uppercut (strong vertical launcher)
+- **L** – Spike (downward slam)
+- **U** – Diagonal launcher (45° strike)
+- **Enter / Space / R** (on Game Over) – Retry the run immediately
+
+## Gameplay details
+
+- The arena floor and elevated platforms are procedurally generated each session.
+- Enemy waves spawn from both sides of the arena and immediately hunt the player.
+- Every attack spawns a physics-driven hitbox that imparts directional knockback, stun, and damage.
+- The ground pound cancels horizontal momentum, accelerates the player downward, and releases a radial shockwave upon landing.
+- Taking rapid deceleration damage: both the player and enemies receive impact damage proportional to the velocity they lose when colliding with the ground or walls.
+- Enemy behavior is simple but relentless: they sprint toward the player, jump to close vertical gaps, and swipe when in range.
+- A neon-drenched backdrop, aurora sky, and reactive particles keep the arena visually alive between waves.
+- A dedicated game-over panel with a Retry button (and Enter/Space/R shortcuts) lets you jump straight back into the action.
+
+Survive as many waves as possible!
