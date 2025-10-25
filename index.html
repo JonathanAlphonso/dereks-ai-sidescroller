@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Procedural Sidescroller Arena</title>
+    <style>
+      body {
+        margin: 0;
+        background: #0e0c1b;
+        color: #f1f1f1;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        padding: 1rem;
+        text-align: center;
+        background: rgba(20, 20, 30, 0.9);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      #game-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      canvas {
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+      }
+
+      .instructions {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .key {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.1rem 0.5rem;
+        margin: 0 0.1rem;
+        border-radius: 0.3rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        font-weight: 600;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script type="module" src="src/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Procedural Sidescroller Arena</h1>
+    </header>
+    <section class="instructions">
+      <p>
+        Survive waves of enemies spawned from both sides of the arena. Chain melee attacks to
+        keep enemies at bay, and use the ground pound shockwave to control space.
+      </p>
+      <p>
+        <span class="key">A</span>/<span class="key">D</span> move, <span class="key">W</span> or
+        <span class="key">Space</span> jumps, <span class="key">S</span> ground pounds,
+        <span class="key">J</span> jab, <span class="key">K</span> uppercut, <span class="key">L</span> spike,
+        <span class="key">U</span> diagonal launcher.
+      </p>
+    </section>
+    <div id="game-container"></div>
+  </body>
+</html>
